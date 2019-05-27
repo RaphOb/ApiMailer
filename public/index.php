@@ -1,4 +1,8 @@
 <?php
+
+use \Psr\Http\Message\ServerRequestInterface as Request;
+use \Psr\Http\Message\ResponseInterface as Response;
+
 if (PHP_SAPI == 'cli-server') {
     // To help the built-in PHP dev server, check if the request was actually for
     // something which should probably be served as a static file
@@ -31,3 +35,12 @@ $routes($app);
 
 // Run app
 $app->run();
+
+function sendMail(Request $request, Response $response)
+{
+    $email = $request->getAttribute('email');
+    echo $email;
+    if ($email !== NULL) {
+        mail($email, "l'envois d'un email", "Ceci est un email envoyé par wam" );
+    }
+}
