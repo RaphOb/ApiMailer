@@ -4,6 +4,7 @@ use Slim\App;
 use Slim\Http\Request;
 use Slim\Http\Response;
 
+
 return function (App $app) {
     $container = $app->getContainer();
 
@@ -15,6 +16,6 @@ return function (App $app) {
         return $container->get('renderer')->render($response, 'index.phtml', $args);
     });
     $app->group('/apiMail', function() use ($app) {
-        $app->get('/user/mailSend', 'sendMail');
+        $app->post('/user/mailSend', 'sendMail');
     });
 };

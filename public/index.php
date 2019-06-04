@@ -33,14 +33,11 @@ $middleware($app);
 $routes = require __DIR__ . '/../src/routes.php';
 $routes($app);
 
+//Imports
+require __DIR__ . '/../src/common.php';
+require __DIR__ . '/../src/mail.php';
+
+
 // Run app
 $app->run();
 
-function sendMail(Request $request, Response $response)
-{
-    $email = $request->getAttribute('email');
-    echo $email;
-    if ($email !== NULL) {
-        mail($email, "l'envois d'un email", "Ceci est un email envoyé par wam" );
-    }
-}
